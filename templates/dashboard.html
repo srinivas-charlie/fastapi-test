@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #131314; color: #e3e3e3; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .sidebar { background-color: #1e1f20; }
+        .chat-input-container { background-color: #1e1f20; border-radius: 28px; }
+        .user-msg { background-color: #37393b; border-radius: 18px; padding: 10px 16px; margin-bottom: 20px; }
+        .gemini-msg { margin-bottom: 30px; display: flex; gap: 15px; }
+        .gemini-icon { width: 30px; height: 30px; background: linear-gradient(45deg, #4285f4, #9b72cb); border-radius: 50%; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <aside class="sidebar w-64 flex-shrink-0 flex flex-col p-4 hidden md:flex">
+        <button class="mb-8 p-3 bg-[#28292a] rounded-full text-sm font-medium hover:bg-[#333537]">+ New chat</button>
+        <div class="flex-grow overflow-y-auto space-y-2">
+            <p class="text-xs text-gray-500 uppercase px-3">Recent</p>
+            <div class="p-2 hover:bg-[#333537] rounded-lg cursor-pointer text-sm truncate">Building FastAPI apps</div>
+            <div class="p-2 hover:bg-[#333537] rounded-lg cursor-pointer text-sm truncate">Database Models explain</div>
+        </div>
+    </aside>
+
+    <main class="flex-grow flex flex-col relative">
+        <header class="p-4 flex justify-between items-center">
+            <h1 class="text-xl font-medium text-gray-300">Gemini <span class="text-sm bg-blue-900 text-blue-200 px-2 py-0.5 rounded">Pro</span></h1>
+            <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">S</div>
+        </header>
+
+        <section class="flex-grow overflow-y-auto p-4 md:px-40 lg:px-60 mt-10">
+            <div class="flex justify-end">
+                <div class="user-msg max-w-[80%]">How do I use Jinja2 templates in FastAPI?</div>
+            </div>
+
+            <div class="gemini-msg">
+                <div class="gemini-icon flex-shrink-0"></div>
+                <div class="text-gray-200 leading-relaxed">
+                    To use Jinja2 templates, you first need to define a <code>templates</code> object using <code>Jinja2Templates(directory="templates")</code>. Then, you return a <code>TemplateResponse</code> from your route.
+                </div>
+            </div>
+        </section>
+
+        <section class="p-4 pb-8 md:px-40 lg:px-60">
+            <div class="chat-input-container flex items-center p-2 px-4 shadow-xl">
+                <input type="text" placeholder="Enter a prompt here" class="bg-transparent flex-grow outline-none p-3 text-lg">
+                <div class="flex gap-4 text-gray-400">
+                    <button class="hover:text-white">📷</button>
+                    <button class="hover:text-white">🎤</button>
+                    <button class="text-blue-400 hover:text-blue-300">➤</button>
+                </div>
+            </div>
+            <p class="text-[10px] text-center mt-3 text-gray-500">Gemini may display inaccurate info, including about people, so double-check its responses.</p>
+        </section>
+    </main>
+
+</body>
+</html>

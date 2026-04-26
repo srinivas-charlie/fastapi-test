@@ -8,6 +8,7 @@ with engine.connect() as connection:
     print("db connection succesful")
     
 Base = declarative_base()
+
 sessionlocal = sessionmaker()
 
 def get_db():
