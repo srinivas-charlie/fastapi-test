@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
-""" from db import engine
-from models import Base """
+from db import engine
+from models import Base
 
 
 app = FastAPI(debug=True)
 
-""" Base.metadata.create_all(bind=engine) """
+Base.metadata.create_all(bind=engine)
 
 templates = Jinja2Templates(directory="templates")
 
