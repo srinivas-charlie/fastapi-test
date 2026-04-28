@@ -1,65 +1,104 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FastAPI App</title>
     <style>
         body {
-            font-family: Arial;
-            background: #57b970;
-            color: #eff1f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
-        .login-box {
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 10px;
-            width: 350px;
+        .login-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #444;
         }
         input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #1a73e8;
+            outline: none;
         }
         button {
-            width: 90%;
-            padding: 10px;
-            background: #38bdf8;
+            width: 100%;
+            padding: 12px;
+            background-color: #1a73e8;
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
             cursor: pointer;
-            align-items: center;
+            transition: background-color 0.3s;
         }
         button:hover {
-            background: #9e892b;
+            background-color: #1557b0;
         }
-        #msg {
-            margin-top: 10px;
-            font-size: 14px;
+        .footer-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        a {
+            color: #1a73e8;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-<div class="login-box">
-    <h2>Login</h2>
+<div class="login-card">
+    <h2>Welcome Back</h2>
+    
+    <form action="/" method="POST">
+        
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
 
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
 
-    <button onclick="login()">Login</button>
+        <button type="submit">Sign In</button>
+    </form>
 
-    <div id="msg"></div>
+    <div class="footer-text">
+        Don't have an account? <a href="/register">Create one</a>
+    </div>
 </div>
-
-
 
 </body>
 </html>
-
