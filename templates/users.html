@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Users Management</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: #0b0b0c;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .table-row:hover {
+            background: rgba(255,255,255,0.04);
+            transition: 0.3s ease;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="text-white min-h-screen p-10">
+
+    <div class="max-w-7xl mx-auto">
+
+        <!-- HEADER -->
+        <div class="flex justify-between items-center mb-10">
+
+            <div>
+
+                <h1 class="text-4xl font-bold text-red-500">
+                    Users Management
+                </h1>
+
+                <p class="text-gray-400 mt-2">
+                    View and manage all registered platform users
+                </p>
+
+            </div>
+
+
+            <a href="/dashboard"
+               class="glass px-6 py-3 rounded-xl hover:bg-zinc-800 transition">
+
+                ← Dashboard
+
+            </a>
+
+        </div>
+
+
+
+        <!-- USERS TABLE -->
+        <div class="glass rounded-3xl overflow-hidden overflow-x-auto">
+
+            <table class="w-full">
+
+                <!-- TABLE HEADER -->
+                <thead class="bg-zinc-900">
+
+                    <tr class="text-left">
+
+                        <th class="p-5">Profile</th>
+
+                        <th class="p-5">Name</th>
+
+                        <th class="p-5">Email</th>
+
+                        <th class="p-5">Role</th>
+
+                        <th class="p-5">Status</th>
+
+                        <th class="p-5">Actions</th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <!-- TABLE BODY -->
+                <tbody>
+
+                    {% for user in users %}
+
+                    <tr class="table-row border-t border-zinc-800">
+
+                        <!-- PROFILE -->
+                        <td class="p-5">
+
+                            <div class="w-12 h-12 rounded-full bg-zinc-700 border border-red-500 flex items-center justify-center text-lg font-bold">
+
+                                {{ user.name[0].upper() }}
+
+                            </div>
+
+                        </td>
+
+
+
+                        <!-- NAME -->
+                        <td class="p-5 font-semibold">
+
+                            {{ user.name }}
+
+                        </td>
+
+
+
+                        <!-- EMAIL -->
+                        <td class="p-5 text-gray-400">
+
+                            {{ user.email }}
+
+                        </td>
+
+
+
+                        <!-- ROLE -->
+                        <td class="p-5">
+
+                            {% if user.role == "admin" %}
+
+                            <span class="bg-red-600 px-4 py-1 rounded-full text-sm font-medium">
+                                Admin
+                            </span>
+
+                            {% else %}
+
+                            <span class="bg-zinc-700 px-4 py-1 rounded-full text-sm font-medium">
+                                User
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- STATUS -->
+                        <td class="p-5">
+
+                            <span class="bg-green-600/20 text-green-400 px-4 py-1 rounded-full text-sm">
+
+                                Active
+
+                            </span>
+
+                        </td>
+
+
+
+                        <!-- ACTIONS -->
+                        <td class="p-5">
+
+                            <div class="flex gap-3">
+
+                                <button
+                                    class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm transition">
+
+                                    Edit
+
+                                </button>
+
+
+                                <button
+                                    class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm transition">
+
+                                    Delete
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+        <div class="mt-8 text-center text-gray-500 text-sm">
+
+            F1 Infrastructure Control Panel • User Administration Module
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
