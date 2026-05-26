@@ -54,8 +54,9 @@ templates = Jinja2Templates(
 def login_page(request: Request):
 
     return templates.TemplateResponse(
-        "login.html",
-        {"request": request}
+        request=request,
+        name="login.html",
+        context={"request": request}
     )
 
 
@@ -125,8 +126,9 @@ def get_dashboard(
         ).decode("utf-8")
 
     return templates.TemplateResponse(
-        "dashboard.html",
-        {
+        request=request,
+        name="dashboard.html",
+        context={
             "request": request,
             "user": current_user,
             "role": current_user.role,
@@ -156,6 +158,12 @@ def register_page(
         User.email == session_user
     ).first()
 
+    if not current_user:
+
+        return RedirectResponse(
+            url="/"
+        )
+
     if current_user.role != "admin":
 
         raise HTTPException(
@@ -164,8 +172,9 @@ def register_page(
         )
 
     return templates.TemplateResponse(
-        "register.html",
-        {"request": request}
+        request=request,
+        name="register.html",
+        context={"request": request}
     )
 
 
@@ -193,6 +202,12 @@ def create_user(
     current_user = db.query(User).filter(
         User.email == session_user
     ).first()
+
+    if not current_user:
+
+        return RedirectResponse(
+            url="/"
+        )
 
     if current_user.role != "admin":
 
@@ -261,11 +276,19 @@ def users_list(
 
     if not session_user:
 
-        return RedirectResponse(url="/")
+        return RedirectResponse(
+            url="/"
+        )
 
     current_user = db.query(User).filter(
         User.email == session_user
     ).first()
+
+    if not current_user:
+
+        return RedirectResponse(
+            url="/"
+        )
 
     if current_user.role != "admin":
 
@@ -277,8 +300,9 @@ def users_list(
     users = db.query(User).all()
 
     return templates.TemplateResponse(
-        "users.html",
-        {
+        request=request,
+        name="users.html",
+        context={
             "request": request,
             "users": users,
             "current_user": current_user
