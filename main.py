@@ -48,6 +48,40 @@ templates = Jinja2Templates(
 
 
 # ======================================
+# CREATE DEFAULT ADMIN
+# ======================================
+
+@app.on_event("startup")
+def create_admin():
+
+    db = next(get_db())
+
+    admin = db.query(User).filter(
+        User.email == "admin@gmail.com"
+    ).first()
+
+    if not admin:
+
+        admin_user = User(
+            name="Admin",
+            email="admin@gmail.com",
+            password="admin123",
+            role="admin",
+            profile_photo=None
+        )
+
+        db.add(admin_user)
+
+        db.commit()
+
+        print("Default admin created")
+
+    else:
+
+        print("Admin already exists")
+
+
+# ======================================
 # LOGIN PAGE
 # ======================================
 @app.get("/")
